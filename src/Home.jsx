@@ -1,11 +1,16 @@
-import React from 'react'
+import React from 'react';
 import Connexion from './component/Connexion';
-//import {sw} from 'react-dom';
+import Detail from './pages/pageDetail' ;
+
 export default function Home() {
-    
-    return (
+//console.log(data.userInfos);
+
+//const [arrayInfo, setArrayInfo] = useState([])
+
+  return (
         <main className="container">
-          <Connexion/>
+           <Connexion  />         
+            <Detail/>
         </main>
     )
 }

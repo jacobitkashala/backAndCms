@@ -1,13 +1,35 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: no-repeat fixed
+    url("./Images/wp2423437-african-safari-elephants-wallpapers.jpg");
+}
+.connex {
+  position: absolute;
+  width: 40vw;
+  top: 20%;
+  margin: auto;
+  transform: translateY(-(50%));
+  left: 25vw;
+  border: 4px solid gray;
+  border-radius: 5px;
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+.box {
+  border: 2 solid gray;
+}
+
+.box--block{
+  display: flex;
+  justify-content:space-between ;
 }

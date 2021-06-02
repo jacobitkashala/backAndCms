@@ -1,24 +1,20 @@
 import React,{useRef} from 'react';
-import data from "../Data/DataPersonne";
 import {FaUserAlt} from 'react-icons/fa'
 
-export default function Connexion({arrayInfo}) {
-    const {userInfos}=data;
+export default function Connexion({onClickValide}) {
+    
     const refUserName = useRef(null);    
-    const refPassword = useRef(null);    
+    const refPassword = useRef(null);  
+    let loginUser=[]  
+    let userPassworwordValue,userNmeValue;
    
-     const onClickUserName=()=>{
-        let value=refUserName.current.value
-        arrayInfo.push(value)
-        //console.log(value)
-       
+    const onClickUserName=()=>{
+        userNmeValue=refUserName.current.value;
     }
-     const onClickPassword=()=>{
-        let value=refPassword.current.value
-        arrayInfo.push(value)
-
-        //console.log(value)
+    const onClickPassword=()=>{
+        userPassworwordValue=refPassword.current.value;
     }
+  
     return (
         <>
             <div className=" d-flex flex-row justify-content-center row connex"> 
@@ -30,9 +26,12 @@ export default function Connexion({arrayInfo}) {
                 </div>
                 <div className=" col-4">
                 <label>Password</label>
-                    <input type="password" className="form-control mt-3" onChange={onClickPassword} />  
+                    <input type="password" className="form-control mt-3" ref={refPassword} onChange={onClickPassword} />  
                 </div>
-                <button type="button" class="btn btn-secondary mt-2"  > valider </button>     
+                <button type="button" className="btn btn-secondary mt-2 col-sm-7" onClick={()=>{ 
+                    loginUser["user"]=userNmeValue; 
+                    loginUser["password"]=userPassworwordValue; 
+                    onClickValide(loginUser)}}  > valider </button>     
 
             </div>
         </>       

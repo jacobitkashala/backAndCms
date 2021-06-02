@@ -32,7 +32,7 @@ export default function Information() {
                     <input type="text" className="form-control mt-2" placeholder="Niveau"  />
                     <input type="text" className="form-control mt-2" placeholder="Téléphone"  />
                     <input type="text" className="form-control mt-2" placeholder="Nationalité"  />
-                    <button type="button" class="btn btn-secondary mt-2"  > valider </button>     
+                    <button type="button" className="btn btn-secondary mt-2"  > valider </button>     
                 
                 </div>
             </div>

@@ -4,7 +4,7 @@ import data from '../Data/DataPersonne'
 
 export default function Projet() {
    const {projetRealiser}=data;
-    console.log(projetRealiser)
+    //console.log(projetRealiser)
     // for (const value of projetRealiser) {
     //     console.log(value)
     // }
@@ -37,7 +37,7 @@ export default function Projet() {
                                 <td> {projet.client}</td>
                                 <td> {projet.langage.map((langageProgrammation,index)=>{
                                     return(
-                                        <td key={index}> {langageProgrammation+","}</td>
+                                        <span key={index}> {langageProgrammation+","}</span>
                                     )
                                 })}</td>
                                 <td> <img src={projet.image_path} alt={projet.nom} /></td>

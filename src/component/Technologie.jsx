@@ -5,7 +5,7 @@ import data from '../Data/DataPersonne'
 
 
 export default function Technologie() {
-    const {langageProgrammation,BaseDonnee,libreryFromwork}=data;
+    const {langageProgrammation,BaseDonnee}=data;
     return (
         <>
         <h2 style={ {fontSize: "3rem",fontWeight: 900, }}>Competences</h2>

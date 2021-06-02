@@ -1,4 +1,8 @@
 const dataAll={
+    login:{
+        user:"jacobit",
+        password:"serge@priscille"
+    },
     userInfos:{
         nom:"Kashala",
         postNom:"mukendi",
@@ -7,7 +11,7 @@ const dataAll={
         pays:"RDCongo",
         niveau:"Junior",
         telephone:"+243815824641",
-        nationalite:"Congolais"
+        nationalite:"Congolais",
     },
     projetRealiser:[{
         id:"id_projet1",

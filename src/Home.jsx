@@ -1,16 +1,31 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Connexion from './component/Connexion';
 import Detail from './pages/pageDetail' ;
+import data from "./Data/DataPersonne";
 
 export default function Home() {
-//console.log(data.userInfos);
+const {login}=  data ;
+const [displayConnexion, setdisplayConnexion] = useState(true)  
+//   console.log();
+//   console.log(userInfos);
 
-//const [arrayInfo, setArrayInfo] = useState([])
+  const onClickValide=(loginUser)=>{
+    if(loginUser["user"]===login.user && loginUser["password"]===login.password ){
+        setdisplayConnexion(stateprev=>(!stateprev))
+
+    }else(
+        setdisplayConnexion(true)
+
+    )
+}
 
   return (
         <main className="container">
-           <Connexion  />         
+          { (displayConnexion)?( 
+            <Connexion onClickValide={onClickValide} />  
+          ):(
             <Detail/>
+          )}
         </main>
     )
 }

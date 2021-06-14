@@ -13,7 +13,10 @@ export class RestDataSource{
             await Axios.request({
               method: methode,
               url: url,
-              data:data,
+              body:JSON.stringify(data) ,
+              headers:{
+                'Content-Type':'application/json'
+              }
             })
           ).data
         );

@@ -1,21 +1,33 @@
 import React from 'react';
 import { NavLink, Link } from "react-router-dom";
+import { AiFillCode } from "react-icons/ai";
+import { GiSkills } from "react-icons/gi";
+import { FaUserCircle } from "react-icons/fa";
+
 
 export default function Header() {
 
     return (
         <>
-            <div className="row mt-3">
-                <div className=" col-10 nav navigation">
+            <div className="row">
+                <div className="nav navigation" style={{
+                    width: "80%",
+                    marginBottom: "40px", position: "fixed", zIndex: "4", top: "0", background: "#d67a27"
+                }}>
                     <ul className="nav nav-pills">
-                        <li className="nav-item">
+                        <li className="nav-item col-4">
                             <NavLink exact to="/">
-                                Projet
+                                <AiFillCode className="font-icone" />
                             </NavLink>
                         </li>
-                        <li className="nav-item">
+                        <li className="nav-item px-3 col-4">
                             <NavLink exact to="/Competence/">
-                                Competence
+                                <GiSkills className="font-icone" />
+                            </NavLink>
+                        </li>
+                        <li className="nav-item px-3 col-4">
+                            <NavLink exact to="/User/">
+                                <FaUserCircle className="font-icone" />
                             </NavLink>
                         </li>
                     </ul>

@@ -27,9 +27,11 @@ export default function Home() {
   const onClickValide = (userLogin) => {
    // console.log(userLogin);
     //console.log(username,passwd);
-    if(userLogin["user"]===username && userLogin["password"]===passwd){
-      setdisplayConnexion(stateprev=>(!stateprev))
-    }else   setdisplayConnexion(true)
+    setdisplayConnexion(stateprev=>(!stateprev))
+
+    // if(userLogin["user"]===username && userLogin["password"]===passwd){
+    //   setdisplayConnexion(stateprev=>(!stateprev))
+    // }else   setdisplayConnexion(true)
 
   }
 

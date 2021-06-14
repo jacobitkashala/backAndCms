@@ -33,3 +33,31 @@ code {
   display: flex;
   justify-content:space-between ;
 }
+.font-icone{
+  font-size: 3rem;
+  transition: all 0.3s;
+}
+.font-icone:hover{
+  transform: scale(1.3);
+}
+.active{
+  color:  #fff!important ;
+}
+.edit-icon{
+  cursor: pointer !important;
+  font-size: 2rem !important;
+  transition: all 0.3s;
+
+}
+.edit-icon:hover{
+  transform: scale(1.2);
+}
+
+.contenaire-projet{
+  display: flex;
+  justify-content: space-between;
+}
+.img-view{
+  object-fit: cover;
+  /* height: 10%!important; */
+}

@@ -61,3 +61,11 @@ code {
   object-fit: cover;
   /* height: 10%!important; */
 }
+.font-dev-icon{
+  font-size: 2.5rem;
+  
+}
+.deleet-icon{
+  font-size: 2.5rem;
+color: red;
+}

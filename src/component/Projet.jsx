@@ -4,8 +4,9 @@ import React, {
 } from 'react';
 import { FaCross } from 'react-icons/fa';
 import data from '../Data/DataPersonne';
-import { FiEdit } from "react-icons/fi"
-import corver from "../Images/voiture.jpeg"
+import { FiEdit } from "react-icons/fi";
+import { MdDelete } from "react-icons/md";
+import corver from "../Images/voiture.jpeg";
 //import Image from 'cloudinary-react'
 
 export default function Projet() {
@@ -14,7 +15,16 @@ export default function Projet() {
     const [fileImage, setfileImage] = useState()
     const [preview, setpreview] = useState()
     const refIputFil = useRef(null)
-    let pathImage;
+
+    let newProjet = {}
+
+    // id:"",
+    // nom:"cloneCinema",
+    // description:"une application de cinéma qui utilise l API de movieDB",
+    // image:"",
+    // langageid:["langage1","langage6","langage3"],
+    // langage:["Css","Html","js"],
+    // client:
     //acceptedFile=fileImage
     //    const imageCopy=useCallback(
     //         (acceptedFiles) => {
@@ -37,7 +47,7 @@ export default function Projet() {
     //         },
     //        [],
     //    )
-  
+
     const cardProjets = projetRealiser.map((app, index) => {
         return (
             <div key={index} className="col-sm-10 mt-4 ">
@@ -45,6 +55,7 @@ export default function Projet() {
                     <img src={corver} className="card-img img-fluid" alt="..." />
                     <div className="card-img-overlay">
                         <FiEdit className="edit-icon" />
+                        <MdDelete className="deleet-icon" />
                         <h5 className="card-title">{app.nom}</h5>
                         <h5 className="card-text">{app.client}</h5>
                         <p className="card-text">{app.description}</p>
@@ -63,47 +74,46 @@ export default function Projet() {
             reader.onload = () => {
                 setpreview(reader.result);
             }
+            newProjet.image = preview;
             reader.readAsDataURL(fileImage);
         } else {
 
         }
 
-    }, [fileImage]);
-    console.log(preview) ;
+    }, [fileImage, preview, newProjet]);
+
+    console.log(preview);
     const onDownloadImage = (event) => {
         const file = event.target.files[0]
 
         if (file && file.type.substr(0, 5) === "image") {
-
             setfileImage(file);
-            
         } else {
             setfileImage(null);
-
         }
     }
     const onClickAddProjet = () => {
-
+        newProjet.id = "id_projet" + projetRealiser.length + 1;
+        projetRealiser.push(newProjet)
         console.log("add")
     }
 
     return (
         <>
-            <h2 style={{ fontSize: "3rem", fontWeight: 900,marginTop: "10%" }}>Projet</h2>
+            <h2 style={{ fontSize: "3rem", fontWeight: 900, marginTop: "10%" }}>Projet</h2>
             <div className="row contenaire-projet">
                 <div className="col-sm-7">
                     {
                         cardProjets
                     }
-
                 </div>
-                <div className="col-sm-4" style={{ position: "fixed",right:"100px",top:"0px" }}>
+                <div className="col-sm-4" style={{ position: "fixed", right: "100px", top: "0px" }}>
                     <input type="text" className="form-control mt-2" placeholder="Nom Projet " />
                     <textarea className="form-control mt-2" placeholder="Description du projet" ></textarea>
                     <input type="text" className="form-control mt-2" placeholder="Langage utiliser Ex:C,CS,Js " />
                     <input type="text" className="form-control mt-2" placeholder="Nom client" />
                     <input type="file" accept="image/*" multiple={false} ref={refIputFil} className="form-control form-control  mt-2" onChange={onDownloadImage} />
-                    <img src={preview} className="img-fluid mt-1 img-view"  alt="" />
+                    <img src={preview} className="img-fluid mt-1 img-view" alt="" />
                     <button type="button" className="btn btn-secondary mt-2" onClick={onClickAddProjet} > <FaCross />Ad </button>
                 </div>
             </div>

@@ -20,12 +20,12 @@ export class RestDataSource{
             })
           ).data
         );
-        //this.getStatus();
+        
       }
       getStatus(){
         (async () => {
         const reponse = Axios(this.BASE_URL);
-          return reponse
+          return (await reponse).status;
         
       })();
       }  

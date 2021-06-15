@@ -1,6 +1,7 @@
 import React from 'react';
 import Application from "../component/Projet"
-import Technologie from "../component/Technologie";
+import Competence from "../component/Technologie";
+import UserInfo from "../component/Information";
 import Header from "../component/Header";
 import { Route, Switch } from "react-router-dom";
 
@@ -9,17 +10,14 @@ import { Route, Switch } from "react-router-dom";
 
 export default function PageDetail() {
     return (
+
         <>
             <Header />
             <Switch>
-            <Route to="/" component={Application} />
+                <Route exact path="/" component={Application} />
+                <Route path="/Competence/" component={Competence} />
+                <Route path="/User/" component={UserInfo} />
             </Switch>
-
-            {/* <Information/> */}
-            {/*          
-          <Projet/>
-          <Technologie/>   */}
-
         </>
     )
 }

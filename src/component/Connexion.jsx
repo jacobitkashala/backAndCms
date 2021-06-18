@@ -33,6 +33,8 @@ export default function Connexion({onClickValide}) {
                 <button type="button" className="btn btn-secondary mt-2 col-sm-7" onClick={()=>{ 
                     loginUser["user"]=userNmeValue; 
                     loginUser["password"]=userPassworwordValue; 
+                    refPassword.current.value=""
+                    refUserName.current.value=""
                     onClickValide(loginUser)}}  > valider </button>     
 
             </div>

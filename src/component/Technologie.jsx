@@ -2,20 +2,20 @@ import React from 'react';
 import { FaCross } from 'react-icons/fa';
 import data from '../Data/DataPersonne';
 import {
-    DiAndroid,
-    DiNodejsSmall,
-    DiJavascript,
-    DiVisualstudio,
-    DiReact,
+    // DiAndroid,
+    // DiNodejsSmall,
+     DiJavascript,
+    // DiVisualstudio,
+    // DiReact,
+    // DiBootstrap,
+    // DiDotnet,
     DiHtml5,
     DiMysql,
     DiMongodb,
-    DiBootstrap,
     DiCss3,
     DiSass,
     DiMsqlServer,
     DiJava,
-    DiDotnet
 } from "react-icons/di";
 import { FaCuttlefish } from "react-icons/fa";
 

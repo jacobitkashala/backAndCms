@@ -5,9 +5,9 @@ import { RestDataSource } from "./webService/RestDataSources";
 
 export default function Home() {
 
-  const [dataPrimary, setdataPrimary] = useState([])
+  const [dataLogin, setdataLogin] = useState([])
   const [displayConnexion, setdisplayConnexion] = useState(true);
-  const urlLogin='http://localhost:8080/api/information';
+  const urlLogin='http://localhost:8080/api/information/login';
 
   const restDataSource=  useMemo( () => {
     const restData = new RestDataSource(urlLogin);
@@ -16,29 +16,29 @@ export default function Home() {
   
   useEffect( () => {
     restDataSource.getData( async (data) => {
-      setdataPrimary(data);
+      setdataLogin(data);
     });
   }, [restDataSource])
 
-  if(dataPrimary[0]){
-    var {username,passwd}=dataPrimary[0];
+  
+  if(dataLogin[0]){
+    var {username,passwd}=dataLogin[0];
   }
-
+ 
   const onClickValide = (userLogin) => {
-   // console.log(userLogin);
-    //console.log(username,passwd);
-    setdisplayConnexion(stateprev=>(!stateprev))
+   console.log("logn:"+userLogin["user"]);
+    console.log(username,passwd);
 
-    // if(userLogin["user"]===username && userLogin["password"]===passwd){
-    //   setdisplayConnexion(stateprev=>(!stateprev))
-    // }else   setdisplayConnexion(true)
+    if(userLogin["user"]===username && userLogin["password"]===passwd){
+      setdisplayConnexion(stateprev=>(!stateprev))
+    }
 
   }
 
   return (
     <main className="container">
       {
-        (displayConnexion) ? (<Login onClickValide={onClickValide} />) : (<Detail />)
+        (false) ? (<Login onClickValide={onClickValide} />) : (<Detail />)
       }
     </main>
   )

@@ -1,18 +1,40 @@
-import React from 'react'
+import React from 'react';
+import {
+    DiAndroid,
+    DiNodejsSmall,
+    DiJavascript,
+    DiVisualstudio,
+    DiReact,
+    DiBootstrap,
+    DiDotnet,
+    DiHtml5,
+    DiMysql,
+    DiMongodb,
+    DiCss3,
+    DiSass,
+    DiMsqlServer,
+    DiJava
+} from "react-icons/di";
 
-export default function ListCompetences() {
-    // const listLangage = langPro.map((language, index) => {
+export default function ListCompetences({ dataCompetence }) {
+    const lgPrIcons = [
+        <DiAndroid />,
+        <DiNodejsSmall />,
+        <DiJavascript />,
+        <DiVisualstudio />,
+        <DiReact />,
+        <DiBootstrap />,
+        <DiDotnet />,
+        <DiHtml5 />,
+        <DiMysql />,
+        <DiMongodb />,
+        <DiCss3 />,
+        <DiSass />,
+        <DiMsqlServer />,
+        <DiJava />
+    ]
 
-    //     return (
-    //         <tr key={index}>
-    //             <td> {index}</td>
-    //             <td> {langage.nom}</td>
-    //             <td> {langage.niveau}</td>
-    //             <td> {lgProgrammationIcon[index]}</td>
-    //         </tr>)
-    // })
 
-  
     return (
         <>
             <table className="table table-dark table-hover table-striped" style={{ cursor: "pointer" }}>
@@ -24,7 +46,16 @@ export default function ListCompetences() {
                         <th scope="col">Logo</th>
                     </tr>
                 </thead>
-                <tbody>{ }
+                <tbody>{
+                    dataCompetence.map((lang, index) => {
+                        return (
+                            <tr key={index}>
+                                <td> {index}</td>
+                                <td> {lang.nom}</td>
+                                <td> {lang.niveau}</td>
+                                <td> {lgPrIcons[index]}</td>
+                            </tr>)
+                    })}
                 </tbody>
             </table>
         </>

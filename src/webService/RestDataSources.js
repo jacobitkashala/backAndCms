@@ -51,12 +51,15 @@ export class RestDataSource {
       }
     })
   }
-  async Update(data, callback) {
-    this.SendRequest("put", `${this.URL}/${data.id}`, callback, data);
-  }
   async Delete(id) {
     await Axios.request({
       method: "delete",
+      url: `${this.URL}/${id}`
+    })
+  }
+  async Update(id) {
+    await Axios.request({
+      method: "update",
       url: `${this.URL}/${id}`
     })
   }

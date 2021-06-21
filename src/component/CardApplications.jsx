@@ -1,31 +1,9 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React from 'react';
 import corver from "../Images/voiture.jpeg";
 import { FiEdit } from "react-icons/fi";
 import { MdDelete } from "react-icons/md";
-import { RestDataSource } from "../webService/RestDataSources";
 
-export default function CardApplications({ onClickAddProjet }) {
-
-    const [dataApplication, setDataApplication] = useState();
-
-    const restDataSource = useMemo(() => {
-        const restDataSource = new RestDataSource("http://localhost:8080/api/application");
-        return restDataSource;
-    }, [])
-
-    const appUpdate = (idApp) => {
-        console.log(idApp)
-    }
-
-    const appDelete = useMemo( ()=>(idApp) => {
-        restDataSource.Delete(idApp);
-    }, [restDataSource])
-
-    useEffect(() => {
-        restDataSource.getData(async (data) => {
-            setDataApplication(data);
-        })
-    }, [restDataSource, appDelete])
+export default function CardApplications({ dataApplication, onClickAddProjet,appUpdate,appDelete }) {
 
     if (dataApplication) {
         var displayApplication = dataApplication.map((app, index) => {

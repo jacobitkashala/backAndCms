@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { FaCross } from 'react-icons/fa';
 
-export default function EditCardApplication({onClickAddProjet}) {
+export default function EditCardApplication({appAdd}) {
 
     const [fileImage, setfileImage] = useState();
     const [preview, setpreview] = useState();
@@ -48,7 +48,6 @@ export default function EditCardApplication({onClickAddProjet}) {
         newApp.descrApp = "";
         newApp.langApp = "";
         newApp.nameClient = "";
-
     }
 
     return (
@@ -70,7 +69,7 @@ export default function EditCardApplication({onClickAddProjet}) {
                 <img src={preview} className="img-fluid mt-1 img-view" alt="" />
             </div>
             <button type="button" className="btn btn-secondary mt-2" onClick={() => {
-                onClickAddProjet(newApp);
+                appAdd(newApp);
                  clean();
             }} > <FaCross />Ad </button>
         </>

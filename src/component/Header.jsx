@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { AiFillCode } from "react-icons/ai";
 import { GiSkills } from "react-icons/gi";
 import { FaUserCircle } from "react-icons/fa";

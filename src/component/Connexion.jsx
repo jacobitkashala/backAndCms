@@ -1,9 +1,8 @@
 import React,{useRef} from 'react';
 import {FaUserAlt} from 'react-icons/fa';
-//import data from '../Data/DataPersonne'
 
 export default function Connexion({onClickValide}) {
-    //const {login}=data;
+ 
     const refUserName = useRef(null);    
     const refPassword = useRef(null);  
     let loginUser=[]  

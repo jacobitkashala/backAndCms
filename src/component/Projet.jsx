@@ -27,51 +27,63 @@
 //         },
 //        [],
 //    )
-
-
-import React, {
-    useRef,
-    useState,
-    useEffect,
-    useMemo
-} from 'react';
-import data from '../Data/DataPersonne';
-import CardListApplication from "./CardApplications"
+import React, { useMemo } from 'react';
+import CardListApplication from "./CardApplications";
+import EditCardApplication from "./EditCardApplication";
+import { RestDataSource } from "../webService/RestDataSources";
+import Joi from "joi";
 //import Image from 'cloudinary-react'
 
 export default function Projet() {
 
-    const { projetRealiser } = data;
-  
+    const restDataSource = useMemo(() => {
+        return new RestDataSource("http://localhost:8080/api/application");
+    }, [])
 
+    const modelJoi = Joi.object({
+        nameApp: Joi.string()
+            .alphanum()
+            .min(1)
+            .required(),
+        nameClient: Joi.string()
+            .alphanum()
+            .min(1)
+            .required(),
+        descrApp: Joi.string()
+            .required()
+            .min(5),
+        langApp: Joi.string()
+            .min(2)
+            .required()
+    });
 
+    const onClickAddProjet =useMemo(()=>(newApp) => {
+        const { error, value } = modelJoi.validate(newApp);
 
-    useEffect(() => {
-        // if (fileImage) {
-        //     const reader = new FileReader();
+        if (value !== undefined) {
+            console.log(error);
 
-        //     reader.onload = () => {
-        //         setpreview(reader.result);
-        //     }
-        //     newApp.image = preview;
-        //     reader.readAsDataURL(fileImage);
-        //     console.log(preview);
-        // }
+            if (!error) {
+                const { descrApp, langApp, nameApp, nameClient } = value;
+                let dataLang = langApp.split(",")
+                let dataApp = { descrApp, nameApp, nameClient }
+                console.log("dataApp", dataApp);
+                console.log("dataLang", dataLang);
+                restDataSource.Post(dataApp);
+            }
+        }
+    }, [restDataSource,modelJoi])
 
-
-    }, []);
-
-
-
+    //const appUpdate
     return (
         <>
             <h2 style={{ fontSize: "3rem", fontWeight: 900, marginTop: "10%" }}>Application</h2>
             <div className="row contenaire-projet">
                 <div className="col-sm-7">
-                    <CardListApplication />
+                    <CardListApplication onClickAddProjet={onClickAddProjet} />
                 </div>
                 <div className="col-sm-4" style={{ position: "fixed", right: "100px", top: "10%" }}>
-
+                    <EditCardApplication onClickAddProjet={onClickAddProjet} />
                 </div>
             </div>
         </>

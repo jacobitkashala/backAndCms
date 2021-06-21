@@ -31,35 +31,13 @@ export default function Technologie() {
     <FaCuttlefish className="font-dev-icon" />, <DiJavascript className="font-dev-icon" />,
     <DiSass className="font-dev-icon" />, < DiHtml5 className="font-dev-icon" />,
     < DiJava className="font-dev-icon" />]
+    
     return (
         <>
             <h2 style={{ fontSize: "3rem", fontWeight: 900, marginTop: "10%" }}>Competences</h2>
-            <div className="row ">
+            <div className="row  contenaire-projet">
                 <div className="col-sm-4">
-                    <table className="table table-dark table-hover table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">NomLangage</th>
-                                <th scope="col">Niveau</th>
-                                <th scope="col">Logo</th>
-                            </tr>
-                        </thead>
-                        <tbody>{
-                            langageProgrammation.map((langage, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td> {index}</td>
-                                        <td> {langage.nom}</td>
-                                        <td> {langage.niveau}</td>
-                                        <td> {lgProgrammationIcon[index]}</td>
-                                    </tr>)
-                            })
-
-                        }
-                        </tbody>
-                    </table>
-                    <table className="table table-dark table-hover table-striped">
+                   
                         <thead>
                             <tr>
                                 <th scope="col">#</th>

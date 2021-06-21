@@ -1,53 +1,64 @@
 //import {RestUrls } from '../config/path'
 import Axios from "axios";
 
-export class RestDataSource{
- 
-    constructor(base_url) {
-        this.BASE_URL = base_url;
+export class RestDataSource {
+  statusReq;
+  constructor(url) {
+    this.URL = url;
+  }
+
+  async sendRequest(methode, url, callback, data) {
+    callback(
+      (
+        await Axios.request({
+          method: methode,
+          url: url,
+          data: data,
+          // data: qs.stringify(data),
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        })
+      ).data
+    );
+
+  }
+  async getStatus(url) {
+
+    Axios(url)
+      .then(resp => this.statusReq = resp.status);
+    console.log(this.statusReq)
+  }
+
+  async getOne(id, callback) {
+    this.SendRequest("get", `${this.URL}/${id}`, callback);
+  }
+  async getData(callback) {
+    try {
+      this.sendRequest("get", this.URL, callback);
+    } catch (error) {
+      console.log(error)
+    }
+
+  }
+  async Post(data) {
+    await Axios.request({
+      method: "post",
+      url: this.URL,
+      data: data,
+      headers: {
+        'Content-Type': 'application/json'
       }
-    
-      async sendRequest(methode, url, callback,data) {
-        callback(
-          (
-            await Axios.request({
-              method: methode,
-              url: url,
-              body:JSON.stringify(data) ,
-              headers:{
-                'Content-Type':'application/json'
-              }
-            })
-          ).data
-        );
-        
-      }
-      getStatus(){
-        (async () => {
-        const reponse = Axios(this.BASE_URL);
-          return (await reponse).status;
-        
-      })();
-      }  
-      async getOne(id, callback) {
-        this.SendRequest("get", `${this.BASE_URL}/${id}`, callback);
-      }
-      getData(callback) {
-        try {
-           this.sendRequest("get", this.BASE_URL, callback);
-        } catch (error) {  
-          console.log(error)
-        }
-       
-      }
-      async Create(data, callback) {
-        this.SendRequest("post", this.BASE_URL, callback, data)
-      }
-      async Update(data, callback) {
-        this.SendRequest("put", `${this.BASE_URL}/${data.id}`, callback, data);
-      }
-      async Delete(data, callback) {
-        this.SendRequest("delete", `${this.BASE_URL}/${data.id}`, callback, data);
-      }
-      
+    })
+  }
+  async Update(data, callback) {
+    this.SendRequest("put", `${this.URL}/${data.id}`, callback, data);
+  }
+  async Delete(id) {
+    await Axios.request({
+      method: "delete",
+      url: `${this.URL}/${id}`
+    })
+  }
+
 }

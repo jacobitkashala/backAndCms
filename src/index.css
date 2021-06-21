@@ -47,7 +47,6 @@ code {
   cursor: pointer !important;
   font-size: 2rem !important;
   transition: all 0.3s;
-
 }
 .edit-icon:hover{
   transform: scale(1.2);
@@ -67,5 +66,10 @@ code {
 }
 .deleet-icon{
   font-size: 2.5rem;
-color: red;
+  color: red;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.deleet-icon:hover{
+  transform: scale(1.2);
 }

@@ -1,9 +1,7 @@
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
-import { FaCross } from 'react-icons/fa';
-import { FaCuttlefish } from "react-icons/fa";
 import ListCompetences from "./ListCompetences";
 import { RestDataSource } from "../webService/RestDataSources";
-
+import EditComp from "./EditCompetence"
 
 export default function Technologie() {
 
@@ -23,6 +21,8 @@ export default function Technologie() {
 
     const addCompetence = useCallback(
         (newCompt) => {
+            console.log(newCompt)
+            restDataSource.Post(newCompt);
             // const { error, value } = modelJoi.validate(newApp);
             // if (value !== undefined) {
             //     console.log(error);
@@ -35,17 +35,15 @@ export default function Technologie() {
             //         restDataSource.Post(dataApp);
             //     }
             // }
-        },
-        [],
-    )
+        }, [restDataSource])
 
-    const updateCompetence = useCallback((idApp) => {
-        restDataSource.Update(idApp);
-    }, [restDataSource]);
+    // const updateCompetence = useCallback((idApp) => {
+    //     restDataSource.Update(idApp);
+    // }, [restDataSource]);
 
-    const deleteCompetence = useCallback((idApp) => {
-        restDataSource.Delete(idApp);
-    }, [restDataSource]);
+    // const deleteCompetence = useCallback((idApp) => {
+    //     restDataSource.Delete(idApp);
+    // }, [restDataSource]);
 
 
     useEffect(() => {
@@ -60,11 +58,8 @@ export default function Technologie() {
                     <ListCompetences dataCompetence={dataCompetence} />
                 </div>
                 <div className="col-sm-4">
-                   
-
+                    <EditComp addCompetence={addCompetence} />
                 </div>
-
-
             </div>
         </>
     )

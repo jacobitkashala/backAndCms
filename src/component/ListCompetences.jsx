@@ -33,7 +33,7 @@ export default function ListCompetences({ dataCompetence }) {
         <DiMsqlServer />,
         <DiJava />
     ]
-
+console.log(dataCompetence)
 
     return (
         <>
@@ -51,8 +51,8 @@ export default function ListCompetences({ dataCompetence }) {
                         return (
                             <tr key={index}>
                                 <td> {index}</td>
-                                <td> {lang.nom}</td>
-                                <td> {lang.niveau}</td>
+                                <td> {lang.langage_nom}</td>
+                                <td> {lang.langage_niveau}%</td>
                                 <td> {lgPrIcons[index]}</td>
                             </tr>)
                     })}

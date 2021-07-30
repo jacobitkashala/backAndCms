@@ -1,19 +1,51 @@
-import React, { useRef } from 'react';
+import auth from '../util/Auth'
+import { useHistory } from "react-router-dom";
 import { FaUserAlt } from 'react-icons/fa';
+import { RestDataSource } from "../webService/RestDataSources";
+import React, { useRef, useEffect, useState } from 'react';
 
-export default function Connexion({ onClickValide }) {
+export default function Connexion() {
+
+    const history = useHistory();
 
     const refUserName = useRef(null);
     const refPassword = useRef(null);
-    let loginUser = []
-    let userPassworwordValue, userNmeValue;
+
+    const [loginData, setLoginData] = useState([]);
+
+    const urlLogin = 'http://localhost:8080/api/information/login';
+
+    let userPassworwordValue, userNmeValue, loginUser = [];
+
+    useEffect(() => {
+        const restData = new RestDataSource(urlLogin);
+        restData.getData(data => setLoginData(data));
+    }, [])
 
     const onClickUserName = () => {
         userNmeValue = refUserName.current.value;
-
     }
     const onClickPassword = () => {
         userPassworwordValue = refPassword.current.value;
+    }
+
+    const onClickValide = (userLogin) => {
+
+        console.log(userLogin["user"], userLogin["password"])
+
+        const { username, passwd } = loginData[0];
+
+        console.log(username, passwd);
+
+        if (username === userLogin["user"] &&
+            passwd === userLogin["password"]) {
+
+            auth.login(() => {
+                history.push("/application")
+            })
+
+        }
+
     }
 
     return (

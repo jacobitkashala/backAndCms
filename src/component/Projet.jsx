@@ -35,7 +35,6 @@ import CardListApplication from "./CardApplications";
 import EditCardApplication from "./EditCardApplication";
 import { RestDataSource } from "../webService/RestDataSources";
 import Joi from "joi";
-import Header from "./Header"
 
 export default function Projet() {
     const [dataApplication, setDataApplication] = useState();
@@ -92,11 +91,10 @@ export default function Projet() {
             setDataApplication(data);
         })
     }, [restDataSource])
-    // , appAdd,appUpdate,appDelete
 
     return (
         <>
-            <Header />
+
             <h2 style={{ fontSize: "3rem", fontWeight: 900, marginTop: "10%" }}>Application</h2>
             <div className="row contenaire-projet">
                 <div className="col-sm-7">

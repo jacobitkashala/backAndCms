@@ -1,43 +1,62 @@
-import React, { useState, useEffect, useMemo } from 'react';
+
+//import Axios from "axios";
+import React, { useState, useEffect } from 'react';
+import Error from './component/Error';
+import Application from "./component/Projet"
 import Login from './component/Connexion';
-import Detail from './pages/pageDetail';
+import Competence from './component/Technologie';
+import { Route, Switch, useHistory } from "react-router-dom";
 import { RestDataSource } from "./webService/RestDataSources";
 
-export default function Home() {
 
-  const [dataLogin, setdataLogin] = useState([])
-  const [displayConnexion, setdisplayConnexion] = useState(true);
+export default function Home() {
+  const [loginData, setLoginData] = useState([]);
+  let history = useHistory();
   const urlLogin = 'http://localhost:8080/api/information/login';
 
-  const restDataSource = useMemo(() => {
-    const restData = new RestDataSource(urlLogin);
-    return restData;
-  }, [urlLogin])
+  sessionStorage.setItem("connected", true);
+  let isAuthenticated = sessionStorage.getItem("connected");
 
   useEffect(() => {
-    restDataSource.getData(data => setdataLogin(data));
-}, [restDataSource])
+    const restData = new RestDataSource(urlLogin);
+    restData.getData(data => setLoginData(data));
+
+  }, [])
+
+  console.log(loginData);
+  console.log(isAuthenticated);
 
 
-if (dataLogin[0]) {
-  var { username, passwd } = dataLogin[0];
-}
+  const onClickValide = (userLogin) => {
+    //console.log(userLogin["user"],userLogin["password"])
 
-const onClickValide = (userLogin) => {
-  console.log("logn:" + userLogin["user"]);
-  console.log(username, passwd);
+    const { username, passwd } = loginData[0];
 
-  if (userLogin["user"] === username && userLogin["password"] === passwd) {
-    setdisplayConnexion(stateprev => (!stateprev))
+    console.log(username, passwd);
+
+    if (username === userLogin["user"] &&
+      passwd === userLogin["password"]) {
+      sessionStorage.setItem("connected", true);
+      isAuthenticated = sessionStorage.getItem("connected");
+
+      history.push("/application");
+      console.log(isAuthenticated);
+    }
+
   }
 
-}
+  return (
+    <main className="container">
+      <Switch>
+        <Route exact path="/"
+          render={props => <Login {...props} onClickValide={onClickValide} />}
+        />
 
-return (
-  <main className="container">
-    {
-      (displayConnexion) ? (<Login onClickValide={onClickValide} />) : (<Detail />)
-    }
-  </main>
-)
+        <Route exact path="/application" component={Application} />
+        <Route exact path="/Competence" component={Competence} />
+        <Route path="/" component={Error} />
+      </Switch>
+
+    </main>
+  )
 }

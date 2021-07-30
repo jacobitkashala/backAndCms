@@ -16,17 +16,17 @@ export default function Header() {
                 }}>
                     <ul className="nav nav-pills">
                         <li className="nav-item col-4">
-                            <NavLink exact to="/">
+                            <NavLink exact to="/user">
                                 <AiFillCode className="font-icone" />
                             </NavLink>
                         </li>
                         <li className="nav-item px-3 col-4">
-                            <NavLink exact to="/Competence/">
+                            <NavLink exact to="Competence">
                                 <GiSkills className="font-icone" />
                             </NavLink>
                         </li>
                         <li className="nav-item px-3 col-4">
-                            <NavLink exact to="/User/">
+                            <NavLink exact to="/detail/User/">
                                 <FaUserCircle className="font-icone" />
                             </NavLink>
                         </li>

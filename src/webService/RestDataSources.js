@@ -4,6 +4,7 @@ import Axios from "axios";
 export class RestDataSource {
   statusReq;
   constructor(url) {
+    // Axios.defaults.withCredentials = true;
     this.URL = url;
   }
 
@@ -14,7 +15,6 @@ export class RestDataSource {
           method: methode,
           url: url,
           data: data,
-          // data: qs.stringify(data),
           headers: {
             'Content-Type': 'application/json'
           }
@@ -42,13 +42,19 @@ export class RestDataSource {
 
   }
   async Post(data) {
-    await Axios.request({
+    return await Axios.request({
       method: "post",
       url: this.URL,
       data: data,
       headers: {
         'Content-Type': 'application/json'
       }
+    })
+  }
+  async Login(data) {
+    return Axios.post(this.URL, {
+      "data": data
+
     })
   }
   async Delete(id) {
@@ -63,5 +69,6 @@ export class RestDataSource {
       url: `${this.URL}/${id}`
     })
   }
+
 
 }
